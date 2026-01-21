@@ -20,7 +20,7 @@ const names = products.filter((p) => p.price > 50).map((p) => p.name);
 for(let i = 0; i < names.length; i++){ // added nicer print
     console.log(names[i])
 }
-//console.log(names); //Something more?
+console.log(names); //Something more?
 
 //
 

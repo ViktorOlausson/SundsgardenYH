@@ -14,7 +14,7 @@ name: "Laptop",
 retailPrice: 1200, // renamed retail price
 orderPrice: 1000 //duplicate price
 };
-//console.log(item.retailPrice);
+console.log(item.retailPrice);
 
 //
 
@@ -23,8 +23,7 @@ members: [
 { name: "Ana", skills: ["JS", "React"] },
 { name: "Bo", skills: ["Node", "SQL"] } // forgot to do an array, and to have it in two strings
 ]
-};
-//console.log(team.members[1].skills[0]);
+};console.log(team.members[1].skills[0]);
 
 //
 
