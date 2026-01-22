@@ -39,7 +39,19 @@ let contacts: Contact[] = [  {
     email: "oskar.p@gmail.com",
     phone: "+46 76 555 12 34",
     tags: ["family", "emergency"]
-  }]
+  },{
+    id: 3,
+    name: "Erik Johansson",
+    phone: "+46 70 123 45 67"
+  },{
+    id: 3,
+    name: "Erik Johansson",
+    phone: "+46 70 123 45 67"
+  },{
+    id: 3,
+    name: "Erik Johansson",
+    phone: "+46 70 123 45 67"
+  },]
 
 function addContact(c: Contact){
     contacts.push(c)
@@ -53,8 +65,17 @@ function listContacts(){
     }
 }
 
+function findByName(_name: string): Contact[]{
+
+  let result: Contact[] = contacts.filter((c) => c.name.toLowerCase().includes(_name.toLowerCase()))
+  console.log(result)
+  return result
+}
+
 let person: Contact = {id: 0, name: "person personson", email: "person@gmail.com"}
 
 addContact(person)
 
 listContacts()
+
+findByName("erik")
