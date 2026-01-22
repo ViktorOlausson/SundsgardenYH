@@ -76,14 +76,19 @@ function removeById(_id: number): boolean{
 }
 
 let person: Contact = {id: 0, name: "person personson", email: "person@gmail.com"}
+let person1: Contact = {id: 8, name: "wille carlsson", email: "carlsson.wille@hotmail.com"}
+let person2: Contact = {id: 7, name: "Kalle anka", email: "kalle@outlook.com"}
+
 
 addContact(person)
+addContact(person1)
+addContact(person2)
 listContacts()
 
 console.log("--------------------------------------------------------");
 
 findByName("erik")
-removeById(0)
+removeById(4)
 
 console.log("--------------------------------------------------------");
 listContacts()
