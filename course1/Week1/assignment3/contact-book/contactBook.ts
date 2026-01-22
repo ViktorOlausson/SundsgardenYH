@@ -39,19 +39,7 @@ let contacts: Contact[] = [  {
     email: "oskar.p@gmail.com",
     phone: "+46 76 555 12 34",
     tags: ["family", "emergency"]
-  },{
-    id: 3,
-    name: "Erik Johansson",
-    phone: "+46 70 123 45 67"
-  },{
-    id: 3,
-    name: "Erik Johansson",
-    phone: "+46 70 123 45 67"
-  },{
-    id: 3,
-    name: "Erik Johansson",
-    phone: "+46 70 123 45 67"
-  },]
+  }]
 
 function addContact(c: Contact){
     contacts.push(c)
@@ -72,10 +60,31 @@ function findByName(_name: string): Contact[]{
   return result
 }
 
+
+
+function removeById(_id: number): boolean{
+  for(let i = 0; i < contacts.length; i++){
+    if(contacts[i]?.id === _id){
+      let index: number = contacts.findIndex(c => c.id === _id) 
+      contacts.splice(index, 1)
+      console.log(`Removed contact with id: ${_id}`)
+      return true
+    }
+  }
+  console.log(`Could not find contact with id: ${_id}`);
+  return false
+}
+
 let person: Contact = {id: 0, name: "person personson", email: "person@gmail.com"}
 
 addContact(person)
-
 listContacts()
 
+console.log("--------------------------------------------------------");
+
+findByName("erik")
+removeById(0)
+
+console.log("--------------------------------------------------------");
+listContacts()
 findByName("erik")
