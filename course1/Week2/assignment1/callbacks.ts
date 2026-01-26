@@ -66,9 +66,21 @@ function printPizzaReady(){
 
 //orderPizza(printPizzaReady)
 
-//nr6
-
+//nr 6
 type nr6Type = (text: string) => void
+
+function call3Times(printNr6: nr6Type){
+    const strings:string[] = ["message 1", "message 2", "message 3"]
+    strings.forEach((a: string) => printNr6(a))
+}
+
+function printNr6(text: string){
+    console.log(text);
+}
+
+call3Times(printNr6)
+
+//nr7
 
 function startDownload(urlString:string, downloadComplete: nr6Type){
     console.log("Starting download from: ", urlString);
@@ -82,4 +94,4 @@ function downloadComplete(url: string){
     console.log("download completed from: ", url);
 }
 
-startDownload("https://www.starstable.com/instruction.txt", downloadComplete)
+//startDownload("https://www.starstable.com/instruction.txt", downloadComplete)
