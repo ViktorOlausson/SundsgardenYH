@@ -78,7 +78,7 @@ function printNr6(text: string){
     console.log(text);
 }
 
-call3Times(printNr6)
+//call3Times(printNr6)
 
 //nr7
 
@@ -95,3 +95,27 @@ function downloadComplete(url: string){
 }
 
 //startDownload("https://www.starstable.com/instruction.txt", downloadComplete)
+
+//nr8
+
+type nr8Type = () => void
+
+function printRandom(error: nr8Type, success: nr8Type){
+    const random: number = Math.floor(Math.random() * 1000000)
+    console.log(random);
+    if(random % 2 == 0){
+        success()
+    }else{
+    error()
+    }
+}
+
+function successMessage(){
+    console.log("success");
+}
+
+function errorMessage(){
+    console.log("error");
+}
+
+printRandom(errorMessage, successMessage)
