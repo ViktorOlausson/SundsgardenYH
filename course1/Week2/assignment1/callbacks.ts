@@ -50,3 +50,18 @@ function callbackToUpperCase(input: string){
 
 transformText2000("this text will be transformed", callbackToUpperCase)
 
+//nr 5
+
+function orderPizza(printPizzaReady: printStringType){
+    console.log("ordering pizza...");
+
+    setTimeout(() => {
+        printPizzaReady()
+    }, 3000)
+}
+
+function printPizzaReady(){
+    console.log("pizza is ready");
+}
+
+orderPizza(printPizzaReady)
