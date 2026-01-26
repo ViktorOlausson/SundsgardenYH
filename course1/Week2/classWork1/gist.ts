@@ -156,24 +156,34 @@ console.log("-".repeat(50));
 // ============================================
 // LEVEL 3: HARD (Complex Logic)
 // ============================================
+console.log("-".repeat(25) + " Hard " + "-".repeat(25));
 
-console.log("-".repeat(50));
 // Question 11: Filter students who have scholarship, are 20 or older, and grade is NOT below 80
 // Your code here:
+
+// can't do
 
 console.log("-".repeat(50));
 // Question 12: Filter products that are good deals (in stock, price < 500, rating > 4.5)
 // Your code here:
+
+//will return none because all procuts are over 500
 
 console.log("-".repeat(50));
 // Question 13: Filter users who logged in during January 2024 (lastLogin starts with "2024-01")
 // Hint: Use .startsWith() method
 // Your code here:
 
+const userLogin = users.filter((user) => user.lastLogin.startsWith("2024-01"))
+console.log(userLogin);
+
 console.log("-".repeat(50));
 // Question 14: Filter students whose names contain the letter "a" (case-insensitive)
 // Hint: Use .toLowerCase() and .includes()
 // Your code here:
+
+const studentsNameWA = students.filter((student) => student.name.toLowerCase().includes("a"))
+console.log(studentsNameWA);
 
 console.log("-".repeat(50));
 // ============================================
