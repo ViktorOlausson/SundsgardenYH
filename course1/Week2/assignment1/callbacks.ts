@@ -48,7 +48,7 @@ function callbackToUpperCase(input: string){
     return(input.toUpperCase()); 
 }
 
-transformText2000("this text will be transformed", callbackToUpperCase)
+// transformText2000("this text will be transformed", callbackToUpperCase)
 
 //nr 5
 
@@ -64,4 +64,22 @@ function printPizzaReady(){
     console.log("pizza is ready");
 }
 
-orderPizza(printPizzaReady)
+//orderPizza(printPizzaReady)
+
+//nr6
+
+type nr6Type = (text: string) => void
+
+function startDownload(urlString:string, downloadComplete: nr6Type){
+    console.log("Starting download from: ", urlString);
+
+    setTimeout(() => {
+        downloadComplete(urlString)
+    }, 2000)
+}
+
+function downloadComplete(url: string){
+    console.log("download completed from: ", url);
+}
+
+startDownload("https://www.starstable.com/instruction.txt", downloadComplete)
