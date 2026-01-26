@@ -1,4 +1,4 @@
-type printStringType = (data:string) => void;
+type printStringType = (data?:string) => void;
 
 //nr 1
 function printHello(print: printStringType){
@@ -22,6 +22,7 @@ function print(message: string){
 
 type printResultType = (result: number) => void;
 
+//nr 3
 function calcNPrint(a:number, b:number, print:printResultType){
     const sum:number = a + b
     
@@ -32,4 +33,20 @@ function printResult(result:number){
     console.log("this is the result: ", result);
 }
 
-calcNPrint(2, 3, printResult)
+//calcNPrint(2, 3, printResult)
+
+//nr 4
+type returnStringType = (data:string) => string;
+
+function transformText2000(text:string, callbackToUpperCase: returnStringType){
+    console.log(text);
+    const transeformedtext = callbackToUpperCase(text) 
+    console.log(transeformedtext);
+}
+
+function callbackToUpperCase(input: string){
+    return(input.toUpperCase()); 
+}
+
+transformText2000("this text will be transformed", callbackToUpperCase)
+
