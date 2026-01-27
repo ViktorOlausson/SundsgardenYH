@@ -118,4 +118,37 @@ function errorMessage(){
     console.log("error");
 }
 
-printRandom(errorMessage, successMessage)
+//printRandom(errorMessage, successMessage)
+
+//nr 9
+
+type mathOperators = "add" | "subtract" | "divide" | "multiply"
+
+type nr9PrintType = (sum: number) => void
+
+function maths(a:number, b:number, operator: mathOperators, print:nr9PrintType){
+    let sum:number = 0;
+
+    switch (operator.toLowerCase()){
+        case "add":
+            sum = a + b
+            break;
+        case "subtract":
+            sum = a - b
+            break;
+        case "multiply":
+            sum = a * b
+            break;
+        case "divide":
+            sum = a / b
+            break;
+    }
+
+    print(sum)
+}
+
+function nr9Print(sum: number){
+    console.log("the result of the math problem is: ", sum);
+}
+
+maths(1,3,"add", nr9Print)
