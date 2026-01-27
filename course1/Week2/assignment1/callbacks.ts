@@ -151,4 +151,27 @@ function nr9Print(sum: number){
     console.log("the result of the math problem is: ", sum);
 }
 
-maths(1,3,"add", nr9Print)
+//maths(1,3,"add", nr9Print)
+
+//NR 10!!!!!!!!!!!
+
+function step1(){
+    console.log("step 1 done");
+
+    setTimeout(() => {
+        step2()
+    }, 1000);
+}
+
+function step2(){
+    console.log("step 2 done");
+    setTimeout(() => {
+        step3()
+    }, 1000);
+}
+
+function step3(){
+    console.log("step 3 done");
+}
+
+step1()
