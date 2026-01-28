@@ -16,5 +16,18 @@ function youAte(what: fruit){
     console.log(`You ate an: ${what}`);
 }
 
-youAte("apple")
-youAte("orange")
+//youAte("apple")
+//youAte("orange")
+
+type resultType =  true | false
+
+function printResult(_result: resultType){
+    if(_result){
+        console.log("pass");
+        return;
+    }
+    console.log("fail");
+}
+
+printResult(true)
+printResult(false)
