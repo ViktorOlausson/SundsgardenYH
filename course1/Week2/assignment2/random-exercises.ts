@@ -29,5 +29,18 @@ function printResult(_result: resultType){
     console.log("fail");
 }
 
-printResult(true)
-printResult(false)
+//printResult(true)
+//printResult(false)
+
+interface book{
+    title: string,
+    pages: number
+}
+
+function describeBook(book:book){
+    console.log(`The book ${book.title} and has ${book.pages} number of pages`);
+}
+
+const book: book= {title: "harry potter and the philosopher's stone", pages: 223}
+
+describeBook(book)
