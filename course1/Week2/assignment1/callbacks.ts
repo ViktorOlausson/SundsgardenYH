@@ -1,8 +1,8 @@
-type printStringType = (data?:string) => void;
+type printStringType = (data:string) => void;
 
 //nr 1
-function printHello(print: printStringType){
-    print("Hello from callback!")
+function printHello(_print: printStringType){
+    _print("Hello from callback!")
 }
 
 //nr2
@@ -17,7 +17,7 @@ function print(message: string){
     console.log(message);
 }
 
-//printHello(print)
+printHello(print)
 //printLateHello(print)
 
 type printResultType = (result: number) => void;
@@ -52,7 +52,8 @@ function callbackToUpperCase(input: string){
 
 //nr 5
 
-function orderPizza(printPizzaReady: printStringType){
+type printStringType2 = (data?:string) => void;
+function orderPizza(printPizzaReady: printStringType2){
     console.log("ordering pizza...");
 
     setTimeout(() => {
@@ -129,7 +130,7 @@ type nr9PrintType = (sum: number) => void
 function maths(a:number, b:number, operator: mathOperators, print:nr9PrintType){
     let sum:number = 0;
 
-    switch (operator.toLowerCase()){
+    switch (operator){
         case "add":
             sum = a + b
             break;
@@ -151,7 +152,7 @@ function nr9Print(sum: number){
     console.log("the result of the math problem is: ", sum);
 }
 
-//maths(1,3,"add", nr9Print)
+maths(1,3, "add", nr9Print)
 
 //NR 10!!!!!!!!!!!
 
@@ -174,4 +175,4 @@ function step3(){
     console.log("step 3 done");
 }
 
-step1()
+//step1()
