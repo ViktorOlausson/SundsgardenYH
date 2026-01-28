@@ -7,5 +7,14 @@ function printID(_ID:IDType){
 let id1: IDType = "thisIsAStringID"
 let id2: IDType = 123
 
-printID(id1)
-printID(id2)
+//printID(id1)
+//printID(id2)
+
+type fruit = "apple" | "banana" | "orange"
+
+function youAte(what: fruit){
+    console.log(`You ate an: ${what}`);
+}
+
+youAte("apple")
+youAte("orange")
