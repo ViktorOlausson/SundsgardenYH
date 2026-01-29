@@ -129,3 +129,10 @@ function printRole(r:role){
 // printRole(role.admin)
 // printRole(role.user)
 // printRole(role.guest)
+
+//4.1
+function wrapInArray<T>(input:T){
+    return [input]
+}
+
+console.log(wrapInArray("cat"));
