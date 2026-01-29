@@ -1,3 +1,4 @@
+//1.1
 type IDType = string | number
 
 function printID(_ID:IDType){
@@ -10,6 +11,7 @@ let id2: IDType = 123
 //printID(id1)
 //printID(id2)
 
+//1.2
 type fruit = "apple" | "banana" | "orange"
 
 function youAte(what: fruit){
@@ -19,6 +21,7 @@ function youAte(what: fruit){
 //youAte("apple")
 //youAte("orange")
 
+//1.3
 type resultType =  true | false
 
 function printResult(_result: resultType){
@@ -32,6 +35,7 @@ function printResult(_result: resultType){
 //printResult(true)
 //printResult(false)
 
+//2.1
 interface book{
     title: string,
     pages: number
@@ -45,6 +49,7 @@ const book: book= {title: "harry potter and the philosopher's stone", pages: 223
 
 // describeBook(book)
 
+// 2.2
 interface teacher{name:string, subject:string}
 interface employee{id:number, email:string}
 type schoolTeacher = teacher & employee
@@ -62,6 +67,7 @@ const englishTeacher: schoolTeacher = {
 
 // printInfo(englishTeacher)
 
+//2.3
 interface car {brand: string, year: number}
 
 function printCar(c:car){
@@ -71,3 +77,4 @@ function printCar(c:car){
 const volvo:car = {brand: "Volvo", year: 2025}
 
 printCar(volvo)
+
