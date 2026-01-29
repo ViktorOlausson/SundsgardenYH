@@ -43,7 +43,7 @@ function describeBook(book:book){
 
 const book: book= {title: "harry potter and the philosopher's stone", pages: 223}
 
-describeBook(book)
+// describeBook(book)
 
 interface teacher{name:string, subject:string}
 interface employee{id:number, email:string}
@@ -60,4 +60,14 @@ const englishTeacher: schoolTeacher = {
     id: 1
 }
 
-printInfo(englishTeacher)
+// printInfo(englishTeacher)
+
+interface car {brand: string, year: number}
+
+function printCar(c:car){
+    console.log(`Brand: ${c.brand}, year: ${c.year}`);
+}
+
+const volvo:car = {brand: "Volvo", year: 2025}
+
+printCar(volvo)
