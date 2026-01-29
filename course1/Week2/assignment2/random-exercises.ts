@@ -89,4 +89,18 @@ function printColor(c:color){
     console.log(`you chose: ${c}`);
 }
 
-printColor(color.green)
+//printColor(color.green)
+
+//3.2
+
+enum pizzaSize{
+    small = "small",
+    medium = "medium",
+    large = "large"
+}
+
+function printPizzaSize(size: pizzaSize){
+    console.log(`you choose a ${size} pizza`);
+}
+
+printPizzaSize(pizzaSize.medium)
