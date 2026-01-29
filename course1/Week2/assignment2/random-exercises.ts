@@ -24,7 +24,7 @@ type resultType =  true | false
 function printResult(_result: resultType){
     if(_result){
         console.log("pass");
-        return;
+        return; 
     }
     console.log("fail");
 }
@@ -44,3 +44,20 @@ function describeBook(book:book){
 const book: book= {title: "harry potter and the philosopher's stone", pages: 223}
 
 describeBook(book)
+
+interface teacher{name:string, subject:string}
+interface employee{id:number, email:string}
+type schoolTeacher = teacher & employee
+
+function printInfo(t: schoolTeacher){
+    console.log(`Name: ${t.name}, subject: ${t.subject}, email: ${t.email}, id: ${t.id}`);
+}
+
+const englishTeacher: schoolTeacher = {
+    name: "Peter Pan",
+    subject: "english",
+    email: "peter.pan@skolan.se",
+    id: 1
+}
+
+printInfo(englishTeacher)
