@@ -103,4 +103,29 @@ function printPizzaSize(size: pizzaSize){
     console.log(`you choose a ${size} pizza`);
 }
 
-printPizzaSize(pizzaSize.medium)
+//printPizzaSize(pizzaSize.medium)
+
+//3.3
+enum role{
+    admin,
+    user,
+    guest
+}
+
+function printRole(r:role){
+    switch (r){
+        case 0:
+            console.log("you have full access");
+            break;
+        case 1:
+            console.log("you have limited access");
+            break
+        case 2:
+            console.log("you have guest access");
+            break
+    }
+}
+
+// printRole(role.admin)
+// printRole(role.user)
+// printRole(role.guest)
