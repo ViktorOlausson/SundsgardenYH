@@ -76,5 +76,17 @@ function printCar(c:car){
 
 const volvo:car = {brand: "Volvo", year: 2025}
 
-printCar(volvo)
+//printCar(volvo)
 
+//3.1
+enum color{
+    red = "red",
+    green = "green",
+    blue = "blue"
+}
+
+function printColor(c:color){
+    console.log(`you chose: ${c}`);
+}
+
+printColor(color.green)
