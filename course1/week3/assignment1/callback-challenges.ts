@@ -55,6 +55,22 @@ const letters = ["a", "b", "c", "d"];
 letters.forEach(function(char) {
   alphabet += char;
 });
-console.log(alphabet);
+//console.log(alphabet);
 
 // should output abcd
+
+// ________________________________________________________________________________________________
+// Challenge 5
+/* 
+Rebuild your map function, this time instead of using a for loop, use your own forEach function that you just defined. 
+Call this new function mapWith.//console.log(mapWith([1, 2, 3], addTwo));
+*/
+
+function mapWith(inputArr: number[], callback: addTwoType){
+    let outputArr: number[] = []
+    inputArr.forEach((num) => {outputArr.push(callback(num))})
+    return outputArr
+}
+
+console.log(mapWith([1, 2, 3], addTwo)); 
+//should output [ 3, 4, 5 ]
