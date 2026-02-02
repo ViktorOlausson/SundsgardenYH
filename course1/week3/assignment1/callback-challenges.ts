@@ -116,7 +116,22 @@ function intersection(arr: number[], ...rest: number[][]){
     return arr.filter(num => rest.every(arr => arr.includes(num)))
 }
 
-console.log(
-  intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
-);
+// console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
 // should log: [5, 15]
+
+// Challenge 8
+/* 
+Construct a function union that compares input arrays and returns a new array that contains all elements. 
+If there are duplicate elements, only add it once to the new array. 
+Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce!
+*/
+
+function union(arr1: number[], arr2: number[], arr3:number[]){
+    var result: number[] = arr1.concat(arr2, arr3)
+    return result.filter((item, index) => result.indexOf(item) == index)
+
+    // return [...new Set([...arr1, ...arr2, ...arr3])];
+}
+
+console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+// should log: [5, 10, 15, 88, 1, 7, 100]
