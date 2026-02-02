@@ -98,6 +98,25 @@ function reduce(inputArr: number[], callback: maths){
     return result
 }
 
-console.log(reduce(nums, add))
+//console.log(reduce(nums, add))
 
 //should output 8
+
+// ________________________________________________________________________________________________
+// Challenge 7
+/* Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!*/
+
+// function intersection(array1: number[], array2: number[], array3: number[], /*...rest: number[][]*/){
+//     var result: number[] = array1.filter((num) => array2.includes(num) && array3.includes(num))
+
+//     return result
+// }
+
+function intersection(arr: number[], ...rest: number[][]){
+    return arr.filter(num => rest.every(arr => arr.includes(num)))
+}
+
+console.log(
+  intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
+);
+// should log: [5, 15]
