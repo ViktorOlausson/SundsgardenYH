@@ -72,5 +72,32 @@ function mapWith(inputArr: number[], callback: addTwoType){
     return outputArr
 }
 
-console.log(mapWith([1, 2, 3], addTwo)); 
+//console.log(mapWith([1, 2, 3], addTwo)); 
 //should output [ 3, 4, 5 ]
+
+// ________________________________________________________________________________________________
+// Challenge 6
+/* 
+The function reduce takes an array and reduces the elements to a single value. 
+For example it can sum all the numbers, multiply them, 
+or any operation that you can put into a function.
+*/
+
+const nums = [4, 1, 3];
+function add (a:number, b:number) {
+  return a + b;
+};
+
+type maths = (a: number, b: number) => number
+
+function reduce(inputArr: number[], callback: maths){
+    var result: number = 0
+
+    inputArr.forEach((num) => {result = callback(num, result)})
+
+    return result
+}
+
+console.log(reduce(nums, add))
+
+//should output 8
