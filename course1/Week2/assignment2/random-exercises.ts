@@ -135,6 +135,16 @@ function wrapInArray<T>(input:T): T[]{
     return [input]
 }
 
-console.log(wrapInArray("cat"));
+//console.log(wrapInArray("cat"));
 
 //4.2
+
+function firstItem<T>(input:T[]){
+    return input[0]
+}
+
+const array1: number[] = [1,2,3]
+const array2: string[] = ["a","b", "c"]
+
+console.log(firstItem(array1))
+console.log(firstItem(array2));
