@@ -131,8 +131,10 @@ function printRole(r:role){
 // printRole(role.guest)
 
 //4.1
-function wrapInArray<T>(input:T){
+function wrapInArray<T>(input:T): T[]{
     return [input]
 }
 
 console.log(wrapInArray("cat"));
+
+//4.2
