@@ -146,5 +146,15 @@ function firstItem<T>(input:T[]){
 const array1: number[] = [1,2,3]
 const array2: string[] = ["a","b", "c"]
 
-console.log(firstItem(array1))
-console.log(firstItem(array2));
+//console.log(firstItem(array1))
+//console.log(firstItem(array2));
+
+//4.3
+
+function reverseArray<T>(input: T[]): T[]{
+    return input.reverse()
+}
+
+const array3: string[] = ["Hello", "World"]
+
+console.log(reverseArray(array3));
