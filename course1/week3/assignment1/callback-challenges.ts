@@ -42,4 +42,19 @@ function map (inputArr: number[], callback: addTwoType){
     return newArr
 }
 
-console.log(map([1, 2, 3], addTwo));
+//console.log(map([1, 2, 3], addTwo));
+
+// ________________________________________________________________________________________________
+// Challenge 4
+/* 
+The function forEach takes an array and a callback, and runs the callback on each element of the array. 
+forEach does not return anything.
+*/
+let alphabet = "";
+const letters = ["a", "b", "c", "d"];
+letters.forEach(function(char) {
+  alphabet += char;
+});
+console.log(alphabet);
+
+// should output abcd
