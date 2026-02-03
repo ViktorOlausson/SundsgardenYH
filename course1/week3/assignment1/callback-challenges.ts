@@ -133,5 +133,43 @@ function union(arr1: number[], arr2: number[], arr3:number[]){
     // return [...new Set([...arr1, ...arr2, ...arr3])];
 }
 
-console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+//console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
+
+// ________________________________________________________________________________________________
+// Challenge 9
+/* 
+Construct a function objOfMatches that accepts two arrays and a callback. 
+objOfMatches will build an object and return it. 
+To build the object, objOfMatches will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. 
+If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
+*/
+
+//
+
+type strs = (string:string) => string
+
+function objOfMatches(arr1: string[], arr2: string[], callback:strs){
+
+    const matches:{[key:string]: string} = {}
+    for(let i = 0; i < arr1.length && i < arr2.length; i++){
+        const key = arr1[i]!
+        const value = arr2[i]
+        if(callback(key) === value){
+            matches[key] = value
+        }
+    }
+    return matches
+}
+
+console.log(
+  objOfMatches(
+    ["hi", "howdy", "bye", "later", "hello"],
+    ["HI", "Howdy", "BYE", "LATER", "hello"],
+    function (str) {
+      return str.toUpperCase();
+    }
+  )
+);
+
+// should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
