@@ -16,26 +16,21 @@ async function coinFlipResult(){
     }
 }
 
-coinFlipResult()
+// coinFlipResult()
 
 type jokeResponse = {
     id: string,
     value: string
 }
 
-function fetchJoke(){
-    const promise: Promise<void> = fetch("https://api.chucknorris.io/jokes/random").then((response:Response) => {
-        if(!response.ok){
-            throw new Error("faiiiiiil")
-        }
-        return response.json() as Promise<jokeResponse>
-    }
-    ).then((data) => {
-        const joke: string = data.value
-        console.log(joke);
-    }).catch((error) => {
+async function fetchJoke(){
+    try{
+        const result = await fetch("https://api.chucknorris.io/jokes/random")
+        const data:jokeResponse = await result.json()
+        console.log(data.value);
+    }catch(error){
         console.log(error);
-    })
+    }
 }
 
-// fetchJoke()
+fetchJoke()
