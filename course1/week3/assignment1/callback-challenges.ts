@@ -162,14 +162,57 @@ function objOfMatches(arr1: string[], arr2: string[], callback:strs){
     return matches
 }
 
-console.log(
-  objOfMatches(
-    ["hi", "howdy", "bye", "later", "hello"],
-    ["HI", "Howdy", "BYE", "LATER", "hello"],
-    function (str) {
-      return str.toUpperCase();
+// console.log(
+//   objOfMatches(
+//     ["hi", "howdy", "bye", "later", "hello"],
+//     ["HI", "Howdy", "BYE", "LATER", "hello"],
+//     function (str) {
+//       return str.toUpperCase();
+//     }
+//   )
+// );
+
+// should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+
+// ________________________________________________________________________________________________
+// Challenge 10
+/* 
+Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks. 
+multiMap will return an object whose keys match the elements in the array of values. 
+The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
+*/
+
+type fnctType = (string:string) => string
+
+function multiMap(strArr: string[], functArr: fnctType[]){
+    const objs:{[key:string]: string[]} = {}
+
+    for(let i = 0; i < strArr.length; i++){
+        const key:string = strArr[i]!
+        const value:string[] = []
+        for(let j = 0; j < functArr.length; j++){
+            value.push(functArr[j]!(key))
+        }
+        objs[key] = value
     }
+    return objs
+}
+
+console.log(
+  multiMap(
+    ["catfood", "glue", "beer"],
+    [
+      function (str:string) {
+        return str.toUpperCase();
+      },
+      function (str:string) {
+        return str.toUpperCase().slice(0,1) + str.slice(1).toLocaleLowerCase()
+      },
+      function (str:string) {
+        return str + str;
+      },
+    ]
   )
 );
 
-// should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+// should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
