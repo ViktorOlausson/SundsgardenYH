@@ -33,4 +33,22 @@ async function fetchJoke(){
     }
 }
 
-fetchJoke()
+// fetchJoke()
+
+async function fetchJokeCoinFlip() {
+    try{
+        const coinFlipResult = await coinFlip()
+        if(coinFlipResult == "you win"){
+            console.log("you win a joke");
+            const response = await fetch("https://api.chucknorris.io/jokes/random")
+            const data:jokeResponse = await response.json()
+            console.log(data.value);
+        }else{
+            console.log("you will not get a joke");
+        }
+    }catch(error){
+        console.log(error);
+    }
+}
+
+fetchJokeCoinFlip()
