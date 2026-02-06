@@ -198,22 +198,22 @@ function multiMap(strArr: string[], functArr: fnctType[]){
     return objs
 }
 
-console.log(
-  multiMap(
-    ["catfood", "glue", "beer"],
-    [
-      function (str:string) {
-        return str.toUpperCase();
-      },
-      function (str:string) {
-        return str.toUpperCase().slice(0,1) + str.slice(1).toLocaleLowerCase()
-      },
-      function (str:string) {
-        return str + str;
-      },
-    ]
-  )
-);
+// console.log(
+//   multiMap(
+//     ["catfood", "glue", "beer"],
+//     [
+//       function (str:string) {
+//         return str.toUpperCase();
+//       },
+//       function (str:string) {
+//         return str.toUpperCase().slice(0,1) + str.slice(1).toLocaleLowerCase()
+//       },
+//       function (str:string) {
+//         return str + str;
+//       },
+//     ]
+//   )
+// );
 
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
@@ -245,6 +245,22 @@ const cities = {
   LA: "Los Angeles",
   Paris: "PARIS",
 };
-console.log(objectFilter(cities, (city) => city.toUpperCase()));
+//console.log(objectFilter(cities, (city) => city.toUpperCase()));
 
 // Should log { London: 'LONDON', Paris: 'PARIS'}
+
+// ________________________________________________________________________________________________
+// Challenge 12
+/* Create a function majority that accepts an array and a callback. 
+The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true. 
+If the number of true returns is equal to the number of false returns, majority should return false.
+ */
+
+const isOdd = function (num) {
+  return num % 2 === 1;
+};
+console.log(majority([1, 2, 3, 4, 5, 7, 9, 11], isOdd));
+// should log: true
+
+console.log(majority([2, 3, 4, 5], isOdd)); 
+// should log: false
