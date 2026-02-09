@@ -30,8 +30,8 @@ export default defineConfig([
       "keyword-spacing": "error",
       "comma-spacing": "error",
       "capitalized-comments": [
-        "error",
-        "always",
+        "off",
+        "when",
         {
           ignorePattern: "pragma|ignored",
           ignoreInlineComments: true,
