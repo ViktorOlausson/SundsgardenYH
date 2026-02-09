@@ -33,3 +33,8 @@ let total = 0;
 prices.forEach((p) => {
   return (total += p);
 });
+
+const user = { name: "John" };
+const sayHi = () => {
+  return console.log(`Hi ${user.name}`);
+};
