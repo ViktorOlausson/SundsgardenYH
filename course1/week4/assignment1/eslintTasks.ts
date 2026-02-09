@@ -48,3 +48,11 @@ const items = [1, 2, 3];
 const doubled = items.map((i) => {
   return i * 2;
 });
+
+type userType = {
+  isAdmin: boolean;
+};
+
+const checkAuth = (user: userType) => {
+  return user.isAdmin;
+};
