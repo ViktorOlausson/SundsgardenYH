@@ -38,3 +38,8 @@ const user = { name: "John" };
 const sayHi = () => {
   return console.log(`Hi ${user.name}`);
 };
+
+const colors = ["red", "blue"];
+colors.forEach((c) => {
+  return console.log(`Color: ${c}`);
+});
