@@ -26,3 +26,10 @@ const square = (x: number) => {
 const getAge = (year: number) => {
   return 2026 - year;
 };
+
+const prices = [10, 20, 30];
+let total = 0;
+
+prices.forEach((p) => {
+  return (total += p);
+});
