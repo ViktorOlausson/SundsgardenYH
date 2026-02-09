@@ -43,3 +43,8 @@ const colors = ["red", "blue"];
 colors.forEach((c) => {
   return console.log(`Color: ${c}`);
 });
+
+const items = [1, 2, 3];
+const doubled = items.map((i) => {
+  return i * 2;
+});

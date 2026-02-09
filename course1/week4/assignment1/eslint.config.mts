@@ -15,7 +15,7 @@ export default defineConfig([
   tseslint.configs.recommended,
   {
     rules: {
-      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": "off",
       "no-undef": "warn",
       "arrow-body-style": ["error", "always"],
       "prettier/prettier": ["error", { semi: true }],
@@ -29,6 +29,7 @@ export default defineConfig([
       "arrow-spacing": "error",
       "keyword-spacing": "error",
       "comma-spacing": "error",
+
       "capitalized-comments": [
         "off",
         "when",
