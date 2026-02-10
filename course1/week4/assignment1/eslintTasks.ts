@@ -1,4 +1,4 @@
-// import fs from "fs";
+// Import fs from "fs";
 
 const greet = (firstName: string) => {
   return `Hello ${firstName}`;
@@ -10,19 +10,19 @@ const double = (n: number) => {
   return n * 2;
 };
 
-//console.log(`result${double(5)}`);
+//Console.log(`result${double(5)}`);
 
 const isEven = (num: number) => {
   return num % 2 === 0;
 };
 
-//console.log(`Test: ${isEven(2)}`);
+//Console.log(`Test: ${isEven(2)}`);
 
 const square = (x: number) => {
   return x * x;
 };
 
-//console.log(`test: ${square(2)}`);
+//Console.log(`test: ${square(2)}`);
 
 // This function calculates your are by subtracting the current year with your birth year
 const getAge = (year: number) => {
@@ -59,12 +59,12 @@ const checkAuth = (user: userType) => {
   return user.isAdmin;
 };
 
-// const read = async (path: any) => {
-//   try {
-//     const data = await fs.readFile(path);
-//     console.log(data);
+// Const read = async (path: any) => {
+//   Try {
+//     Const data = await fs.readFile(path);
+//     Console.log(data);
 //   } catch (err) {
-//     console.log(`error was: ${err}`);
+//     Console.log(`error was: ${err}`);
 //   }
 // };
 
@@ -100,3 +100,7 @@ async function testTimer() {
 }
 
 testTimer();
+
+const logErr = (m: any) => {
+  return console.error(`Error: ${m}`);
+};

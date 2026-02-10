@@ -32,8 +32,8 @@ export default defineConfig([
       "@typescript-eslint/no-explicit-any": "off",
 
       "capitalized-comments": [
-        "off",
-        "when",
+        "error",
+        "always",
         {
           ignorePattern: "pragma|ignored",
           ignoreInlineComments: true,
