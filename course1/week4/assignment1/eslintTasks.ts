@@ -75,7 +75,14 @@ const getData = async (url: any) => {
   } catch (error) {
     console.log(`error: ${error}`);
   }
-  return fetch(url).then((r) => {
-    return r.json();
-  });
+};
+
+const process = (data: any) => {
+  return data
+    .filter((x: number) => {
+      return x > 10;
+    })
+    .map((x: number) => {
+      return x * 2;
+    });
 };
