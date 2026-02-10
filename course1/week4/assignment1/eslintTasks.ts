@@ -59,11 +59,23 @@ const checkAuth = (user: userType) => {
   return user.isAdmin;
 };
 
-const read = async (path: any) => {
-  await fs.readFile(path, (err: any, d: any) => {
-    if (err) {
-      console.log(err);
-    }
-    return console.log(d);
+// const read = async (path: any) => {
+//   try {
+//     const data = await fs.readFile(path);
+//     console.log(data);
+//   } catch (err) {
+//     console.log(`error was: ${err}`);
+//   }
+// };
+
+const getData = async (url: any) => {
+  try {
+    const data: any = await fetch(url);
+    return data.json();
+  } catch (error) {
+    console.log(`error: ${error}`);
+  }
+  return fetch(url).then((r) => {
+    return r.json();
   });
 };
