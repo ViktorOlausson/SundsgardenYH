@@ -29,6 +29,7 @@ export default defineConfig([
       "arrow-spacing": "error",
       "keyword-spacing": "error",
       "comma-spacing": "error",
+      "@typescript-eslint/no-explicit-any": "off",
 
       "capitalized-comments": [
         "off",

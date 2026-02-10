@@ -1,3 +1,5 @@
+// import fs from "fs";
+
 const greet = (firstName: string) => {
   return `Hello ${firstName}`;
 };
@@ -55,4 +57,13 @@ type userType = {
 
 const checkAuth = (user: userType) => {
   return user.isAdmin;
+};
+
+const read = async (path: any) => {
+  await fs.readFile(path, (err: any, d: any) => {
+    if (err) {
+      console.log(err);
+    }
+    return console.log(d);
+  });
 };
