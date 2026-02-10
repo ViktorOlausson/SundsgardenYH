@@ -86,3 +86,17 @@ const process = (data: any) => {
       return x * 2;
     });
 };
+
+const timer = (ms: number) => {
+  return new Promise((res) => {
+    return setTimeout(res, ms);
+  });
+};
+
+async function testTimer() {
+  console.log("starting timer");
+  await timer(1000);
+  console.log("timer finished after 1 sec");
+}
+
+testTimer();
