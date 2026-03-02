@@ -17,11 +17,17 @@ const app = express();
 
 const PORT = 3000;
 
+app.use(express.json());
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 app.get(`/TkdKicks`, (req, res) => {
   res.json(TkdKicks);
 });
 
-app.get(`/TkdKicks/:id`, (req, res) => {
+app.get(`/TkdKick/:id`, (req, res) => {
   const kickId = parseInt(req.params.id);
   const kick = TkdKicks.find((k) => k.id === kickId);
   if (!kick) {
@@ -30,6 +36,13 @@ app.get(`/TkdKicks/:id`, (req, res) => {
   res.json({ message: "Kick found", kick });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.post("/TkdKicks", (req, res) => {
+  const newKick = {
+    id: TkdKicks.length + 1,
+    kName: req.body.kName,
+    eName: req.body.eName,
+    difficulty: req.body.difficulty,
+  };
+  TkdKicks.push(newKick);
+  res.json({ message: "new kick added", kick: newKick });
 });
