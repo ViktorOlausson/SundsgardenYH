@@ -2,7 +2,7 @@ import express from "express";
 //sample data
 // kName = Korean Name
 // eName = english Name
-const TkdKicks = [
+let TkdKicks = [
   { id: 1, kName: "Ap Chagi", eName: "Front Kick", difficulty: "Easy" },
   { id: 2, kName: "Dolloy Chagi", eName: "Round Kick", difficulty: "Medium" },
   {
@@ -47,14 +47,20 @@ app.post("/TkdKicks", (req, res) => {
   res.json({ message: "new kick added", kick: newKick });
 });
 
-app.put('/TkdKick/:id', (req, res) => {
-  const kickId = parseInt(req.params.id)
-  const kick = TkdKicks.find(k => k.id === kickId)
+app.put("/TkdKick/:id", (req, res) => {
+  const kickId = parseInt(req.params.id);
+  const kick = TkdKicks.find((k) => k.id === kickId);
   if (!kick) {
     return res.status(404).json({ message: "Kick not found" });
   }
-  kick.kName = req.body.kName || kick.kName
-  kick.eName = req.body.eName || kick.eName
-  kick.difficulty = req.body.difficulty || kick.difficulty
-  res.json({message: "kick updated", kick: kick})
-})
+  kick.kName = req.body.kName || kick.kName;
+  kick.eName = req.body.eName || kick.eName;
+  kick.difficulty = req.body.difficulty || kick.difficulty;
+  res.json({ message: "kick updated", kick: kick });
+});
+
+app.delete("/TkdKick/:id", (req, res) => {
+  const kickId = parseInt(req.params.id);
+  TkdKicks = TkdKicks.filter((k) => k.id !== kickId);
+  res.json({ message: "kick deleted" });
+});
