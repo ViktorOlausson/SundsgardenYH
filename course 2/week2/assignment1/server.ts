@@ -46,3 +46,15 @@ app.post("/TkdKicks", (req, res) => {
   TkdKicks.push(newKick);
   res.json({ message: "new kick added", kick: newKick });
 });
+
+app.put('/TkdKick/:id', (req, res) => {
+  const kickId = parseInt(req.params.id)
+  const kick = TkdKicks.find(k => k.id === kickId)
+  if (!kick) {
+    return res.status(404).json({ message: "Kick not found" });
+  }
+  kick.kName = req.body.kName || kick.kName
+  kick.eName = req.body.eName || kick.eName
+  kick.difficulty = req.body.difficulty || kick.difficulty
+  res.json({message: "kick updated", kick: kick})
+})
