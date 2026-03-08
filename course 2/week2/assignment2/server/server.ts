@@ -1,5 +1,5 @@
 import express from "express";
-import { z } from "zod";
+import { email, z } from "zod";
 
 const app = express();
 const PORT = 3000;
@@ -30,6 +30,12 @@ const randomPersonResponseSchema = z.object({
   ),
 });
 
+const postPersonSchema = z.object({
+  name: z.string().min(3).max(12),
+  age: z.number().min(18).max(100).default(28),
+  email: z.email().lowercase(),
+});
+
 app.get("/random-person", async (req, res) => {
   try {
     const response = await fetch("https://randomuser.me/api/");
@@ -49,6 +55,29 @@ app.get("/random-person", async (req, res) => {
   } catch (err) {
     res.status(500).json({
       message: "Failed to fetch user",
+    });
+  }
+});
+
+app.post("/users", (req, res) => {
+  try {
+    const validPerson = postPersonSchema.safeParse(req.body);
+    if (!validPerson.success) {
+      return res.status(400).json({
+        message: "Failed to validate user",
+        details: validPerson.error,
+      });
+    }
+    const person = validPerson.data;
+    res.status(201).json({
+      name: person.name,
+      age: person.age,
+      email: person.email,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Failed to post user",
+      details: err,
     });
   }
 });
