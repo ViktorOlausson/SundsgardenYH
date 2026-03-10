@@ -42,3 +42,4 @@ test/*.js
 course 2/.DS_Store
 
 slask.*
+*.yml
