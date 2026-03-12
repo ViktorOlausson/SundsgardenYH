@@ -35,3 +35,26 @@ SELECT * FROM Players
 SELECT * FROM Games
 
 SELECT * FROM Scores
+
+/* INSERT DATA */
+
+INSERT INTO Players (id, name, join_date) VALUES
+(1, 'Alice', '2024-01-10'),
+(2, 'Bob', '2024-02-15'),
+(3, 'Charlie', '2024-03-20'),
+(4, 'Diana', '2024-04-05');
+
+INSERT INTO Games (id, title, gerne) VALUES
+(1, 'Space Invaders', 'Arcade'),
+(2, 'Chess Master', 'Strategy'),
+(3, 'Speed Racer', 'Racing'),
+(4, 'Dungeon Quest', 'RPG');
+
+INSERT INTO Scores (id, player_id, game_id, score, date_played) VALUES
+(1, 1, 1, 1500, '2025-01-05'),
+(2, 2, 1, 1200, '2025-01-06'),
+(3, 1, 2, 900, '2025-01-07'),
+(4, 3, 3, 2000, '2025-01-08'),
+(5, 4, 4, 1750, '2025-01-09'),
+(6, 2, 3, 1600, '2025-01-10'),
+(7, 3, 2, 1100, '2025-01-11');
