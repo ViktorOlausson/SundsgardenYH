@@ -44,6 +44,12 @@ INSERT INTO Players (id, name, join_date) VALUES
 (3, 'Charlie', '2024-03-20'),
 (4, 'Diana', '2024-04-05');
 
+INSERT INTO Players (id, name, join_date) VALUES
+(5, 'Agnes', '2024-11-10'),
+(6, 'Bobby', '2024-12-15'),
+(7, 'Isabelle', '2024-09-02'),
+(8, 'Karl', '2024-07-15');
+
 INSERT INTO Games (id, title, gerne) VALUES
 (1, 'Space Invaders', 'Arcade'),
 (2, 'Chess Master', 'Strategy'),
@@ -68,3 +74,17 @@ ON p.id = s.player_id
 INNER JOIN Games AS g
 ON g.id = s.game_id
 
+
+SELECT p.name, SUM(s.score) AS total_score
+FROM Players AS p
+INNER JOIN Scores AS s
+ON p.id = s.player_id
+GROUP BY p.id, p.name
+ORDER BY total_score DESC
+LIMIT 3
+
+SELECT p.id, p.name
+FROM Players as p
+LEFT OUTER JOIN Scores as s
+on p.id = s.player_id
+WHERE s.player_id IS NULL
