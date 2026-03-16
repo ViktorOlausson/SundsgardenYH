@@ -88,3 +88,11 @@ FROM Players as p
 LEFT OUTER JOIN Scores as s
 on p.id = s.player_id
 WHERE s.player_id IS NULL
+
+SELECT g.gerne, COUNT(*) AS play_count
+FROM Scores AS s
+INNER JOIN Games AS g
+ON s.game_id = g.id
+GROUP BY g.gerne
+ORDER BY play_count DESC
+LIMIT 1
