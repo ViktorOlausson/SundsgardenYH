@@ -39,16 +39,16 @@ SELECT * FROM Scores
 /* INSERT DATA */
 
 INSERT INTO Players (id, name, join_date) VALUES
-(1, 'Alice', '2024-01-10'),
-(2, 'Bob', '2024-02-15'),
-(3, 'Charlie', '2024-03-20'),
-(4, 'Diana', '2024-04-05');
+(1, 'Alice', '2026-01-10'),
+(2, 'Bob', '2026-02-18'),
+(3, 'Charlie', '2026-03-02'),
+(4, 'Diana', '2025-04-05');
 
 INSERT INTO Players (id, name, join_date) VALUES
-(5, 'Agnes', '2024-11-10'),
-(6, 'Bobby', '2024-12-15'),
-(7, 'Isabelle', '2024-09-02'),
-(8, 'Karl', '2024-07-15');
+(5, 'Agnes', '2025-11-10'),
+(6, 'Bobby', '2025-12-15'),
+(7, 'Isabelle', '2025-09-02'),
+(8, 'Karl', '2025-07-15');
 
 INSERT INTO Games (id, title, gerne) VALUES
 (1, 'Space Invaders', 'Arcade'),
