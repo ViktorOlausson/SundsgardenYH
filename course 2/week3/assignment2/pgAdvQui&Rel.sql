@@ -58,3 +58,13 @@ INSERT INTO Scores (id, player_id, game_id, score, date_played) VALUES
 (5, 4, 4, 1750, '2025-01-09'),
 (6, 2, 3, 1600, '2025-01-10'),
 (7, 3, 2, 1100, '2025-01-11');
+
+/* JOIN */
+
+SELECT p.name, s.score, g.title
+FROM Players AS p
+INNER JOIN Scores AS s
+ON p.id = s.player_id
+INNER JOIN Games AS g
+ON g.id = s.game_id
+
