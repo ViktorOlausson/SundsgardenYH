@@ -82,3 +82,17 @@ WHERE s.player_id IS NULL`);
     res.status(500).json({ message: err });
   }
 });
+
+app.get("/pop-gerne", async (req, res) => {
+  try {
+    const result = await pool.query(`SELECT g.gerne, COUNT(*) AS play_count
+FROM Scores AS s
+INNER JOIN Games AS g
+ON s.game_id = g.id
+GROUP BY g.gerne
+ORDER BY play_count DESC`);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
