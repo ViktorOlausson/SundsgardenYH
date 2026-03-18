@@ -96,3 +96,14 @@ ORDER BY play_count DESC`);
     res.status(500).json({ message: err });
   }
 });
+
+app.get("/new-players", async (req, res) => {
+  try {
+    const result = await pool.query(`SELECT p.name, p.join_date
+FROM Players AS P
+WHERE p.join_date > '2026-02-17'`);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
