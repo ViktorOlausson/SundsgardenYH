@@ -69,3 +69,16 @@ LIMIT 3`);
     res.status(500).json({ message: err });
   }
 });
+
+app.get("/inactive-players", async (req, res) => {
+  try {
+    const result = await pool.query(`SELECT p.id, p.name
+FROM Players as p
+LEFT OUTER JOIN Scores as s
+on p.id = s.player_id
+WHERE s.player_id IS NULL`);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
