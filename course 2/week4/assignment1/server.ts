@@ -30,7 +30,7 @@ app.get("/ping", (req, res) => {
   res.json({ message: "pong" });
 });
 
-app.get("/allPlayers", async (req, res) => {
+app.get("/all-players", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM Players");
     res.status(200).json(result.rows);
@@ -49,6 +49,21 @@ INNER JOIN Scores AS s
 ON p.id = s.player_id
 INNER JOIN Games AS g
 ON g.id = s.game_id`);
+    res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
+
+app.get("/top-players", async (req, res) => {
+  try {
+    const result = await pool.query(`SELECT p.name, SUM(s.score) AS total_score
+FROM Players AS p
+INNER JOIN Scores AS s
+ON p.id = s.player_id
+GROUP BY p.id, p.name
+ORDER BY total_score DESC
+LIMIT 3`);
     res.status(200).json(result.rows);
   } catch (err) {
     res.status(500).json({ message: err });
