@@ -96,3 +96,7 @@ ON s.game_id = g.id
 GROUP BY g.gerne
 ORDER BY play_count DESC
 LIMIT 1
+
+SELECT p.name, p.join_date
+FROM Players AS P
+WHERE p.join_date > '2026-02-17'
