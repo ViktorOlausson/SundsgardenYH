@@ -4,13 +4,13 @@ CREATE TABLE Players(
 	id INTEGER PRIMARY KEY,
 	name VARCHAR,
 	join_date DATE
-)
+);
 
 CREATE TABLE Games(
 	id INTEGER PRIMARY KEY,
 	title VARCHAR,
 	gerne VARCHAR
-)
+);
 
 CREATE TABLE Scores(
 	id INTEGER PRIMARY KEY,
@@ -26,15 +26,15 @@ CREATE TABLE Scores(
 	CONSTRAINT fk_game
 		FOREIGN KEY (game_id)
 		REFERENCES Games(id)
-)
+);
 
 /* SELECT EVERYTHING */
 
-SELECT * FROM Players
+SELECT * FROM Players;
 
-SELECT * FROM Games
+SELECT * FROM Games;
 
-SELECT * FROM Scores
+SELECT * FROM Scores;
 
 /* INSERT DATA */
 
@@ -72,7 +72,7 @@ FROM Players AS p
 INNER JOIN Scores AS s
 ON p.id = s.player_id
 INNER JOIN Games AS g
-ON g.id = s.game_id
+ON g.id = s.game_id;
 
 
 SELECT p.name, SUM(s.score) AS total_score
@@ -81,13 +81,13 @@ INNER JOIN Scores AS s
 ON p.id = s.player_id
 GROUP BY p.id, p.name
 ORDER BY total_score DESC
-LIMIT 3
+LIMIT 3;
 
 SELECT p.id, p.name
 FROM Players as p
 LEFT OUTER JOIN Scores as s
 on p.id = s.player_id
-WHERE s.player_id IS NULL
+WHERE s.player_id IS NULL;
 
 SELECT g.gerne, COUNT(*) AS play_count
 FROM Scores AS s
@@ -95,4 +95,4 @@ INNER JOIN Games AS g
 ON s.game_id = g.id
 GROUP BY g.gerne
 ORDER BY play_count DESC
-LIMIT 1
+LIMIT 1;
