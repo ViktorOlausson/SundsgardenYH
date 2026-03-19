@@ -41,6 +41,74 @@ app.get("/all-players", async (req, res) => {
   }
 });
 
+app.post("/all-players", async (req, res) => {
+  const { id, name, join_date } = req.body;
+
+  if (id === undefined || !name || !join_date) {
+    res.status(400).json({
+      message: "id, name and join_date are required",
+    });
+    return;
+  }
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO Players (id, name, join_date)
+       VALUES ($1, $2, $3)
+       RETURNING *`,
+      [id, name, join_date],
+    );
+
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({
+      message: err,
+    });
+  }
+});
+
+app.put("/all-players/:id", async (req, res) => {
+  const playerId = Number(req.params.id);
+  const { name, join_date } = req.body;
+
+  if (Number.isNaN(playerId)) {
+    res.status(400).json({
+      message: "A valid player id is required in the URL",
+    });
+    return;
+  }
+
+  if (!name || !join_date) {
+    res.status(400).json({
+      message: "name and join_date are required",
+    });
+    return;
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE Players
+       SET name = $1, join_date = $2
+       WHERE id = $3
+       RETURNING *`,
+      [name, join_date, playerId],
+    );
+
+    if (result.rowCount === 0) {
+      res.status(404).json({
+        message: "Player not found",
+      });
+      return;
+    }
+
+    res.status(200).json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({
+      message: err,
+    });
+  }
+});
+
 app.get("/players-scores", async (req, res) => {
   try {
     const result = await pool.query(`SELECT p.name, s.score, g.title
