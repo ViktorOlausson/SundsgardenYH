@@ -62,7 +62,6 @@ app.post("/all-players", async (req, res) => {
   if (!validPlayer.success) {
     return res.status(400).json({ error: validPlayer.error });
   }
-  console.log(validPlayer.data);
   const { id, name, join_date } = validPlayer.data;
 
   try {
@@ -82,22 +81,12 @@ app.post("/all-players", async (req, res) => {
 });
 
 app.put("/all-players/:id", async (req, res) => {
-  const playerId = Number(req.params.id);
-  const { name, join_date } = req.body;
+  const validPlayer = playerSchema.safeParse(req.body);
 
-  if (Number.isNaN(playerId)) {
-    res.status(400).json({
-      message: "A valid player id is required in the URL",
-    });
-    return;
+  if (!validPlayer.success) {
+    return res.status(400).json({ error: validPlayer.error });
   }
-
-  if (!name || !join_date) {
-    res.status(400).json({
-      message: "name and join_date are required",
-    });
-    return;
-  }
+  const { id, name, join_date } = validPlayer.data;
 
   try {
     const result = await pool.query(
@@ -105,7 +94,7 @@ app.put("/all-players/:id", async (req, res) => {
        SET name = $1, join_date = $2
        WHERE id = $3
        RETURNING *`,
-      [name, join_date, playerId],
+      [name, join_date, id],
     );
 
     if (result.rowCount === 0) {
@@ -185,6 +174,22 @@ app.get("/new-players", async (req, res) => {
 FROM Players AS P
 WHERE p.join_date > '2026-02-17'`);
     res.status(200).json(result.rows);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
+
+app.delete("/player/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await pool.query(
+      "DELETE FROM Players WHERE id = $1 RETURNING *",
+      [id],
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "Player not found" });
+    }
+    res.json({ message: "Player deleted" });
   } catch (err) {
     res.status(500).json({ message: err });
   }
