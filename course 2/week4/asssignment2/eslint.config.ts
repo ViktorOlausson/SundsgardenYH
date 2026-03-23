@@ -25,6 +25,9 @@ export default defineConfig([
       "key-spacing": ["error", { beforeColon: false, afterColon: true }],
       "keyword-spacing": "error",
       "comma-spacing": "error",
+      indent: ["error", 2],
+      quotes: ["error", "double"],
+      curly: "error",
 
       "capitalized-comments": [
         "off",
