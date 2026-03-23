@@ -48,7 +48,13 @@ INSERT INTO Players (id, name, join_date) VALUES
 (5, 'Agnes', '2025-11-10'),
 (6, 'Bobby', '2025-12-15'),
 (7, 'Isabelle', '2025-09-02'),
-(8, 'Karl', '2025-07-15');
+(8, 'Karl', '2025-07-15'),
+
+INSERT INTO Players (id, name, join_date) VALUES
+(10, 'Alice', '2016-01-10'),
+(20, 'Bob', '2021-02-18'),
+(30, 'Charlie', '2023-03-02'),
+(40, 'Diana', '2022-04-05');
 
 INSERT INTO Games (id, title, gerne) VALUES
 (1, 'Space Invaders', 'Arcade'),
