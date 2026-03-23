@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import pg from "pg";
+import { z } from "zod";
 
 dotenv.config();
 const app = express();
@@ -12,6 +13,22 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_DATABASE,
   password: process.env.DB_PASSWORD,
+});
+
+const playerSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  join_date: z.coerce.date().transform((date) =>
+    new Intl.DateTimeFormat("sv-SE", {
+      timeZone: "Europe/Stockholm",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).format(date),
+  ),
 });
 
 app.use(express.json());
@@ -27,7 +44,8 @@ app.get("/ping", (req, res) => {
 app.get("/all-players", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM Players");
-    res.status(200).json(result.rows);
+    const players = result.rows.map((row) => playerSchema.parse(row));
+    res.status(200).json(players);
   } catch (err) {
     res.status(500).json({
       message: err,

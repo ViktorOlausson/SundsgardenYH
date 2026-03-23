@@ -28,6 +28,13 @@ CREATE TABLE Scores(
 		REFERENCES Games(id)
 );
 
+ALTER TABLE Players
+ALTER COLUMN join_date TYPE TIMESTAMPTZ
+USING join_date::timestamp AT TIME ZONE 'Europe/Stockholm';
+
+ALTER TABLE Players
+ALTER COLUMN join_date SET DEFAULT CURRENT_TIMESTAMP;
+
 /* SELECT EVERYTHING */
 
 SELECT * FROM Players;
