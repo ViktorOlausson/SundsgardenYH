@@ -16,8 +16,11 @@ const pool = new Pool({
 });
 
 const playerSchema = z.object({
-  id: z.number(),
-  name: z.string(),
+  id: z.number({ message: "Player must have valid id" }),
+  name: z
+    .string()
+    .min(2, { message: "name must contain at least 2 characters" })
+    .max(50, { message: "name cannot contain more than 50 characters" }),
   join_date: z.coerce.date().transform((date) =>
     new Intl.DateTimeFormat("sv-SE", {
       timeZone: "Europe/Stockholm",
@@ -54,14 +57,13 @@ app.get("/all-players", async (req, res) => {
 });
 
 app.post("/all-players", async (req, res) => {
-  const { id, name, join_date } = req.body;
+  const validPlayer = playerSchema.safeParse(req.body);
 
-  if (id === undefined || !name || !join_date) {
-    res.status(400).json({
-      message: "id, name and join_date are required",
-    });
-    return;
+  if (!validPlayer.success) {
+    return res.status(400).json({ error: validPlayer.error });
   }
+  console.log(validPlayer.data);
+  const { id, name, join_date } = validPlayer.data;
 
   try {
     const result = await pool.query(
