@@ -8,11 +8,29 @@ const app = express();
 const PORT = 3333;
 const { Pool } = pg;
 
+const envSchema = z.object({
+  DB_USER: z.string(),
+  DB_HOST: z.string(),
+  DB_DATABASE: z.string(),
+  DB_PASSWORD: z.string(),
+});
+
+const validEnv = envSchema.safeParse(process.env);
+
+if (!validEnv.success) {
+  console.error(
+    "Invalid environment variables:",
+    z.treeifyError(validEnv.error),
+  );
+  process.exit(1);
+}
+
+const { DB_USER, DB_HOST, DB_DATABASE, DB_PASSWORD } = validEnv.data;
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
+  user: DB_USER,
+  host: DB_HOST,
+  database: DB_DATABASE,
+  password: DB_PASSWORD,
 });
 
 const playerSchema = z.object({
