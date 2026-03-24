@@ -99,6 +99,7 @@ app.post("/all-players", async (req, res) => {
 });
 
 app.put("/all-players/:id", async (req, res) => {
+  const playerId = Number(req.params.id);
   const validPlayer = playerSchema.safeParse(req.body);
 
   if (!validPlayer.success) {
@@ -112,7 +113,7 @@ app.put("/all-players/:id", async (req, res) => {
        SET name = $1, join_date = $2
        WHERE id = $3
        RETURNING *`,
-      [name, join_date, id],
+      [name, join_date, playerId],
     );
 
     if (result.rowCount === 0) {
