@@ -8,7 +8,7 @@ if (-not (Test-Path "package.json")) {
     npm init -y
 }
 
-npm install express @prisma/client dotenv pg zod
+npm install express @prisma/client dotenv pg zod @prisma/adapter-pg
 npm install -D prisma @types/express @types/pg @eslint/js eslint eslint-config-prettier eslint-plugin-prettier globals jiti nodemon prettier ts-node typescript typescript-eslint
 
 if (-not (Test-Path "server.ts")) {
