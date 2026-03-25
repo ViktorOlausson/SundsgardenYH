@@ -15,7 +15,7 @@ export default defineConfig([
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
       "no-undef": "warn",
-      "arrow-body-style": ["error", "always"],
+      "arrow-body-style": ["off", "always"],
       "prefer-template": "error",
       "@typescript-eslint/no-explicit-any": "off",
       //New stuff:
