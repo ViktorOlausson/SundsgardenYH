@@ -24,7 +24,7 @@ app.listen(PORT, () => {
 });
 '@ | Set-Content "server.ts"
 }
-
+npx prisma init
 npx eslint --init
 
 npm pkg set scripts.dev="nodemon --watch server.ts --exec ts-node server.ts"
