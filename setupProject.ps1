@@ -10,7 +10,21 @@ if (-not (Test-Path "package.json")) {
 
 npm install express @prisma/client dotenv pg zod
 npm install -D prisma @types/express @types/pg @eslint/js eslint eslint-config-prettier eslint-plugin-prettier globals jiti nodemon prettier ts-node typescript typescript-eslint
-ni server.ts
+
+if (-not (Test-Path "server.ts")) {
+@'
+import express from "express";
+
+const app = express();
+app.use(express.json());
+const PORT = 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:3000`);
+});
+'@ | Set-Content "server.ts"
+}
+
 npx eslint --init
 
 npm pkg set scripts.dev="nodemon --watch server.ts --exec ts-node server.ts"
