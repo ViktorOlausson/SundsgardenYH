@@ -120,7 +120,7 @@ async function seed() {
         email: "lukas2.ekman@mail.com",
         name: "Lukas Ekman",
         age: 39,
-        languages: "Swedish",
+        languages: ["Swedish"],
       },
     ],
     skipDuplicates: true,

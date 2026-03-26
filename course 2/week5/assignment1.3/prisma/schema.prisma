@@ -17,5 +17,5 @@ model User{
   name String
   email String @unique
   age Int
-  languages Json
+  languages String[]
 }

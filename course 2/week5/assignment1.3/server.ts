@@ -21,13 +21,41 @@ app.get("/ping", (req, res) => {
   res.json({ message: "pong" });
 });
 
-app.get("/users", async (req, res) => {
+app.get("/userlanguages", async (req, res) => {
   try {
     const users = await prisma.user.findMany();
     res.json(users);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).send(err.message);
+    }
+    res.status(500).send("Unknown error");
+  }
+});
+
+app.get("/userlanguages/:language", async (req, res) => {
+  try {
+    const language = JSON.parse(req.params.language);
+    try {
+      const users = await prisma.user.findMany({
+        where: { languages: language },
+      });
+      res.json(users);
+    } catch (err) {
+      if (err instanceof Error) {
+        res.status(500).json({
+          message: err.message,
+          reason: "get result",
+        });
+      }
+      res.status(500).send("Unknown error");
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
+        reason: "parse to json",
+      });
     }
     res.status(500).send("Unknown error");
   }

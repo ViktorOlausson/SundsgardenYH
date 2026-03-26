@@ -184,7 +184,7 @@ export type UserGroupByOutputType = {
   name: string
   email: string
   age: number
-  languages: runtime.JsonValue
+  languages: string[]
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -215,7 +215,7 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   age?: Prisma.IntFilter<"User"> | number
-  languages?: Prisma.JsonFilter<"User">
+  languages?: Prisma.StringNullableListFilter<"User">
 }
 
 export type UserOrderByWithRelationInput = {
@@ -234,7 +234,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
   age?: Prisma.IntFilter<"User"> | number
-  languages?: Prisma.JsonFilter<"User">
+  languages?: Prisma.StringNullableListFilter<"User">
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -258,14 +258,14 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   age?: Prisma.IntWithAggregatesFilter<"User"> | number
-  languages?: Prisma.JsonWithAggregatesFilter<"User">
+  languages?: Prisma.StringNullableListFilter<"User">
 }
 
 export type UserCreateInput = {
   name: string
   email: string
   age: number
-  languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserCreatelanguagesInput | string[]
 }
 
 export type UserUncheckedCreateInput = {
@@ -273,14 +273,14 @@ export type UserUncheckedCreateInput = {
   name: string
   email: string
   age: number
-  languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserCreatelanguagesInput | string[]
 }
 
 export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
-  languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserUpdatelanguagesInput | string[]
 }
 
 export type UserUncheckedUpdateInput = {
@@ -288,7 +288,7 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
-  languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserUpdatelanguagesInput | string[]
 }
 
 export type UserCreateManyInput = {
@@ -296,14 +296,14 @@ export type UserCreateManyInput = {
   name: string
   email: string
   age: number
-  languages: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserCreatelanguagesInput | string[]
 }
 
 export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
-  languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserUpdatelanguagesInput | string[]
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -311,7 +311,15 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
-  languages?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  languages?: Prisma.UserUpdatelanguagesInput | string[]
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -346,6 +354,10 @@ export type UserSumOrderByAggregateInput = {
   age?: Prisma.SortOrder
 }
 
+export type UserCreatelanguagesInput = {
+  set: string[]
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -356,6 +368,11 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type UserUpdatelanguagesInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 
@@ -402,7 +419,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     email: string
     age: number
-    languages: runtime.JsonValue
+    languages: string[]
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -830,7 +847,7 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly age: Prisma.FieldRef<"User", 'Int'>
-  readonly languages: Prisma.FieldRef<"User", 'Json'>
+  readonly languages: Prisma.FieldRef<"User", 'String[]'>
 }
     
 

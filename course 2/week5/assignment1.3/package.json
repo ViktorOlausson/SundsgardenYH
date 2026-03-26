@@ -9,7 +9,7 @@
     "dev": "nodemon --watch . --ext ts --exec \"set NODE_NO_WARNINGS=1&& node --loader ts-node/esm\" server.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "migrate": "prisma migrate dev && prisma generate",
+    "migrate": "prisma migrate dev && npx prisma generate",
     "db:seed": "node --loader ts-node/esm prisma/seed.ts"
   },
   "prisma": {
