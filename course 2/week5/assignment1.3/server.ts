@@ -84,6 +84,27 @@ app.post("/userlanguages", async (req, res) => {
   }
 });
 
+app.put("/userlanguages/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const updatedUser = await prisma.user.update({
+      where: {
+        email: email,
+      },
+      data: req.body,
+    });
+    res.json(updatedUser);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
+        reason: "parse to json",
+      });
+    }
+    res.status(500).send("Unknown error");
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:3000`);
 });
