@@ -64,13 +64,13 @@ app.get("/userlanguages/:language", async (req, res) => {
 app.post("/userlanguages", async (req, res) => {
   try {
     const newUser = await prisma.user.create({
-      data: {
-        email: req.body.email,
-        name: req.body.name,
-        age: req.body.age,
-        languages: req.body.languages,
-      },
-      // data: req.body,
+      // data: {
+      //   email: req.body.email,
+      //   name: req.body.name,
+      //   age: req.body.age,
+      //   languages: req.body.languages,
+      // },
+      data: req.body,
     });
     res.json(newUser);
   } catch (err) {
