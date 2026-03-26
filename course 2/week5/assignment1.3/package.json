@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch server.ts --exec ts-node server.ts",
+    "start": "set NODE_NO_WARNINGS=1&& node --loader ts-node/esm server.ts",
+    "dev": "nodemon --watch . --ext ts --exec \"set NODE_NO_WARNINGS=1&& node --loader ts-node/esm\" server.ts",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "db:seed": "node --loader ts-node/esm prisma/seed.ts"

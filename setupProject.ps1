@@ -22,12 +22,17 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:3000`);
 });
+
+app.get("/ping", (req, res) => {
+  res.json({ message: "pong" });
+});
 '@ | Set-Content "server.ts"
 }
 npx prisma init
 npx eslint --init
 
-npm pkg set scripts.dev="nodemon --watch server.ts --exec ts-node server.ts"
+npm pkg set scripts.start="set NODE_NO_WARNINGS=1&& node --loader ts-node/esm server.ts"
+npm pkg set scripts.dev="nodemon --watch . --ext ts --exec \"set NODE_NO_WARNINGS=1&& node --loader ts-node/esm\" server.ts"
 npm pkg set scripts.lint="eslint"
 npm pkg set scripts."lint:fix"="eslint --fix"
 npm pkg set type="module"
