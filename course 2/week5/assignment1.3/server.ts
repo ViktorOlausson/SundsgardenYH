@@ -35,10 +35,10 @@ app.get("/userlanguages", async (req, res) => {
 
 app.get("/userlanguages/:language", async (req, res) => {
   try {
-    const language = JSON.parse(req.params.language);
+    const language = req.params.language;
     try {
       const users = await prisma.user.findMany({
-        where: { languages: language },
+        where: { languages: { has: language } },
       });
       res.json(users);
     } catch (err) {
