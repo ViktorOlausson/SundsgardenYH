@@ -12,3 +12,16 @@ Then run this from any folder inside the repo:
 ```powershell
 git s
 ```
+
+After setup has created the project scripts, run a named Prisma migration with:
+
+```powershell
+npm run migrate -- --name add_users_table
+```
+
+That runs:
+
+```powershell
+prisma migrate dev --name add_users_table
+prisma generate
+```
