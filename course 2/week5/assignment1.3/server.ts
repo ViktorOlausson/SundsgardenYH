@@ -61,6 +61,29 @@ app.get("/userlanguages/:language", async (req, res) => {
   }
 });
 
+app.post("/userlanguages", async (req, res) => {
+  try {
+    const newUser = await prisma.user.create({
+      data: {
+        email: req.body.email,
+        name: req.body.name,
+        age: req.body.age,
+        languages: req.body.languages,
+      },
+      // data: req.body,
+    });
+    res.json(newUser);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
+        reason: "parse to json",
+      });
+    }
+    res.status(500).send("Unknown error");
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:3000`);
 });
