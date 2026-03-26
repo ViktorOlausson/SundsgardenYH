@@ -36,20 +36,10 @@ app.get("/userlanguages", async (req, res) => {
 app.get("/userlanguages/:language", async (req, res) => {
   try {
     const language = req.params.language;
-    try {
-      const users = await prisma.user.findMany({
-        where: { languages: { has: language } },
-      });
-      res.json(users);
-    } catch (err) {
-      if (err instanceof Error) {
-        res.status(500).json({
-          message: err.message,
-          reason: "get result",
-        });
-      }
-      res.status(500).send("Unknown error");
-    }
+    const users = await prisma.user.findMany({
+      where: { languages: { has: language } },
+    });
+    res.json(users);
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({
@@ -77,7 +67,6 @@ app.post("/userlanguages", async (req, res) => {
     if (err instanceof Error) {
       res.status(500).json({
         message: err.message,
-        reason: "parse to json",
       });
     }
     res.status(500).send("Unknown error");
@@ -98,7 +87,6 @@ app.put("/userlanguages/:email", async (req, res) => {
     if (err instanceof Error) {
       res.status(500).json({
         message: err.message,
-        reason: "parse to json",
       });
     }
     res.status(500).send("Unknown error");
