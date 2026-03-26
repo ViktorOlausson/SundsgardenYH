@@ -54,12 +54,6 @@ app.get("/userlanguages/:language", async (req, res) => {
 app.post("/userlanguages", async (req, res) => {
   try {
     const newUser = await prisma.user.create({
-      // data: {
-      //   email: req.body.email,
-      //   name: req.body.name,
-      //   age: req.body.age,
-      //   languages: req.body.languages,
-      // },
       data: req.body,
     });
     res.json(newUser);
@@ -83,6 +77,22 @@ app.put("/userlanguages/:email", async (req, res) => {
       data: req.body,
     });
     res.json(updatedUser);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
+      });
+    }
+    res.status(500).send("Unknown error");
+  }
+});
+
+app.delete("/deleteUsersU18", async (req, res) => {
+  try {
+    const deletedUsers = await prisma.user.deleteMany({
+      where: { age: { lt: 18 } },
+    });
+    res.json({ message: "users deleted", numberDeleted: deletedUsers });
   } catch (err) {
     if (err instanceof Error) {
       res.status(500).json({
