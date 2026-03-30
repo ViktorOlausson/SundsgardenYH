@@ -1,0 +1,46 @@
+{
+  "name": "assignment1.3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "set NODE_NO_WARNINGS=1&& node --loader ts-node/esm server.ts",
+    "dev": "nodemon --watch . --ext ts --exec \"set NODE_NO_WARNINGS=1&& node --loader ts-node/esm\" server.ts",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "migrate": "node scripts/migrate.mjs",
+    "db:seed": "node --loader ts-node/esm prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "node --loader ts-node/esm prisma/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pg": "^8.20.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/pg": "^8.20.0",
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.4.0",
+    "jiti": "^2.6.1",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
+    "prisma": "^7.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.2"
+  },
+  "type": "module"
+}
