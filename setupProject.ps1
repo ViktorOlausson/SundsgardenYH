@@ -70,12 +70,20 @@ process.exit(generateResult.status ?? 1);
 npx prisma init
 npx eslint --init
 
-npm pkg set 'scripts.start=set NODE_NO_WARNINGS=1&& node --loader ts-node/esm server.ts'
-npm pkg set 'scripts.dev=nodemon --watch . --ext ts --exec "set NODE_NO_WARNINGS=1&& node --loader ts-node/esm" server.ts'
-npm pkg set 'scripts.lint=eslint'
-npm pkg set 'scripts.lint:fix=eslint --fix'
-npm pkg set 'scripts.migrate=node scripts/migrate.mjs'
-npm pkg set 'type=module'
+$packageJson = Get-Content "package.json" -Raw | ConvertFrom-Json
+
+if (-not $packageJson.scripts) {
+    $packageJson | Add-Member -MemberType NoteProperty -Name "scripts" -Value ([pscustomobject]@{})
+}
+
+$packageJson.scripts | Add-Member -MemberType NoteProperty -Name "start" -Value "set NODE_NO_WARNINGS=1&& node --loader ts-node/esm server.ts" -Force
+$packageJson.scripts | Add-Member -MemberType NoteProperty -Name "dev" -Value "nodemon --watch . --ext ts --exec `"set NODE_NO_WARNINGS=1&& node --loader ts-node/esm`" server.ts" -Force
+$packageJson.scripts | Add-Member -MemberType NoteProperty -Name "lint" -Value "eslint" -Force
+$packageJson.scripts | Add-Member -MemberType NoteProperty -Name "lint:fix" -Value "eslint --fix" -Force
+$packageJson.scripts | Add-Member -MemberType NoteProperty -Name "migrate" -Value "node scripts/migrate.mjs" -Force
+$packageJson | Add-Member -MemberType NoteProperty -Name "type" -Value "module" -Force
+
+$packageJson | ConvertTo-Json -Depth 20 | Set-Content "package.json"
 
 if (-not (Test-Path "tsconfig.json")) {
 @'
