@@ -78,3 +78,19 @@ app.patch("/products/:productId", async (req, res) => {
     res.status(500).send("Unknown error");
   }
 });
+
+app.delete("/products/:id", async (req, res) => {
+  try {
+    const deleteProduct = await prisma.product.delete({
+      where: { id: Number(req.params.id) },
+    });
+    res.json(deleteProduct);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
+      });
+    }
+    res.status(500).send("Unknown error");
+  }
+});
