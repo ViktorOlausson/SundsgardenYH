@@ -47,7 +47,6 @@ model Order {
   customerId Int
   customer   Customer    @relation(fields: [customerId], references: [id]) 
   items      OrderItem[] 
-  createdAt  DateTime    @default(now()) 
 } 
 
  
