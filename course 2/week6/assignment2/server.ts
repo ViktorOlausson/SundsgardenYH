@@ -37,3 +37,29 @@ app.post("/products", async (req, res) => {
     res.status(500).send("Unknown error");
   }
 });
+
+app.get("/products", async (req, res) => {
+  try {
+    const { category, minPrice, maxPrice } = req.query;
+
+    const products = await prisma.product.findMany({
+      where: {
+        price: {
+          gte: minPrice ? Number(minPrice) : undefined,
+          lte: maxPrice ? Number(maxPrice) : undefined,
+        },
+        category: category ? { name: { equals: String(category) } } : undefined,
+      },
+      include: { category: true },
+    });
+    res.json(products);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
+        reason: "parse to json",
+      });
+    }
+    res.status(500).send("Unknown error");
+  }
+});
