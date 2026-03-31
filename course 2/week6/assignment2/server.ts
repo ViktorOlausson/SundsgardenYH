@@ -31,7 +31,6 @@ app.post("/products", async (req, res) => {
     if (err instanceof Error) {
       res.status(500).json({
         message: err.message,
-        reason: "parse to json",
       });
     }
     res.status(500).send("Unknown error");
@@ -57,7 +56,23 @@ app.get("/products", async (req, res) => {
     if (err instanceof Error) {
       res.status(500).json({
         message: err.message,
-        reason: "parse to json",
+      });
+    }
+    res.status(500).send("Unknown error");
+  }
+});
+
+app.patch("/products/:productId", async (req, res) => {
+  try {
+    const update = await prisma.product.update({
+      where: { id: Number(req.params.productId) },
+      data: req.body,
+    });
+    res.json(update);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(500).json({
+        message: err.message,
       });
     }
     res.status(500).send("Unknown error");
