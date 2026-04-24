@@ -4,6 +4,39 @@ import tseslint from "typescript-eslint";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node } },
+  {
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: { globals: globals.node },
+  },
   tseslint.configs.recommended,
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-undef": "warn",
+      "arrow-body-style": ["error", "always"],
+      "prettier/prettier": ["error", { semi: true }],
+      "prefer-template": "error",
+      //New stuff:
+      // "space-before-function-paren": ["error", "never"],
+      // "space-infix-ops": "error",
+      // "arrow-spacing": ["error", { before: true, after: true }],
+      // "key-spacing": ["error", { beforeColon: false, afterColon: true }],
+      "space-infix-ops": "error",
+      "arrow-spacing": "error",
+      "keyword-spacing": "error",
+      "comma-spacing": "error",
+      "@typescript-eslint/no-explicit-any": "off",
+
+      "capitalized-comments": [
+        "error",
+        "always",
+        {
+          ignorePattern: "pragma|ignored",
+          ignoreInlineComments: true,
+        },
+      ],
+    },
+  },
 ]);
