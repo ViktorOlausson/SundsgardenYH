@@ -9,7 +9,7 @@ if (-not (Test-Path "package.json")) {
 }
 
 npm install express @prisma/client dotenv pg zod @prisma/adapter-pg
-npm install -D jest prisma @types/express @types/pg @eslint/js eslint eslint-config-prettier eslint-plugin-prettier globals jiti nodemon prettier ts-node typescript typescript-eslint
+npm install -D jest vitest prisma @types/express @types/pg @eslint/js eslint eslint-config-prettier eslint-plugin-prettier globals jiti nodemon prettier ts-node typescript typescript-eslint
 
 npx tsc --init
 
@@ -56,6 +56,18 @@ if (-not (Test-Path "__tests__")) {
 
 if (-not (Test-Path "__tests__/unit")) {
     New-Item -ItemType Directory -Path "__tests__/unit" | Out-Null
+}
+
+if (-not (Test-Path "__tests__/unit/example.test.ts")) {
+@'
+import { describe, expect, it } from "vitest";
+
+describe("example test", () => {
+  it("checks that Vitest is working", () => {
+    expect(1 + 1).toBe(2);
+  });
+});
+'@ | Set-Content "__tests__/unit/example.test.ts"
 }
 
 if (-not (Test-Path "__tests__/integrations")) {
@@ -161,6 +173,7 @@ if (-not $packageJson.scripts) {
 $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "start" -Value "set NODE_NO_WARNINGS=1&& node --loader ts-node/esm src/server.ts" -Force
 $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "dev" -Value "nodemon --watch . --ext ts --exec `"set NODE_NO_WARNINGS=1&& node --loader ts-node/esm`" src/server.ts" -Force
 $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test" -Value "jest" -Force
+$packageJson.scripts | Add-Member -MemberType NoteProperty -Name "test:vitest" -Value "vitest" -Force
 $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "lint" -Value "eslint" -Force
 $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "lint:fix" -Value "eslint --fix" -Force
 $packageJson.scripts | Add-Member -MemberType NoteProperty -Name "migrate" -Value "node scripts/migrate.mjs" -Force
